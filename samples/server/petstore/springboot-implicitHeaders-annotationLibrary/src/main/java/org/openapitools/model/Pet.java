@@ -6,9 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.Category;
 import org.openapitools.model.Tag;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,12 +24,12 @@ import javax.annotation.Generated;
  * A pet for sale in the pet store
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.12.0-SNAPSHOT")
 public class Pet {
 
-  private Long id;
+  private @Nullable Long id;
 
-  private Category category;
+  private @Nullable Category category;
 
   private String name;
 
@@ -35,7 +37,7 @@ public class Pet {
   private List<String> photoUrls = new ArrayList<>();
 
   @Valid
-  private List<@Valid Tag> tags;
+  private List<@Valid Tag> tags = new ArrayList<>();
 
   /**
    * pet status in the store
@@ -74,7 +76,8 @@ public class Pet {
     }
   }
 
-  private StatusEnum status;
+  @Deprecated
+  private @Nullable StatusEnum status;
 
   public Pet() {
     super();
@@ -96,7 +99,7 @@ public class Pet {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @JsonProperty("id")
   public Long getId() {
@@ -115,7 +118,7 @@ public class Pet {
   /**
    * Get category
    * @return category
-  */
+   */
   @Valid 
   @JsonProperty("category")
   public Category getCategory() {
@@ -134,7 +137,7 @@ public class Pet {
   /**
    * Get name
    * @return name
-  */
+   */
   @NotNull 
   @JsonProperty("name")
   public String getName() {
@@ -161,7 +164,7 @@ public class Pet {
   /**
    * Get photoUrls
    * @return photoUrls
-  */
+   */
   @NotNull 
   @JsonProperty("photoUrls")
   public List<String> getPhotoUrls() {
@@ -188,7 +191,7 @@ public class Pet {
   /**
    * Get tags
    * @return tags
-  */
+   */
   @Valid 
   @JsonProperty("tags")
   public List<@Valid Tag> getTags() {
@@ -207,13 +210,19 @@ public class Pet {
   /**
    * pet status in the store
    * @return status
-  */
+   * @deprecated
+   */
   
   @JsonProperty("status")
+  @Deprecated
   public StatusEnum getStatus() {
     return status;
   }
 
+  /**
+   * @deprecated
+   */
+  @Deprecated
   public void setStatus(StatusEnum status) {
     this.status = status;
   }

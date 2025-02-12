@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.AnimalDto;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -33,10 +34,10 @@ import javax.annotation.Generated;
   @JsonSubTypes.Type(value = BigCatDto.class, name = "BigCat")
 })
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.12.0-SNAPSHOT")
 public class CatDto extends AnimalDto {
 
-  private Boolean declawed;
+  private @Nullable Boolean declawed;
 
   public CatDto() {
     super();
@@ -57,7 +58,7 @@ public class CatDto extends AnimalDto {
   /**
    * Get declawed
    * @return declawed
-  */
+   */
   
   @ApiModelProperty(value = "")
   @JsonProperty("declawed")
@@ -71,12 +72,12 @@ public class CatDto extends AnimalDto {
 
 
   public CatDto className(String className) {
-    super.setClassName(className);
+    super.className(className);
     return this;
   }
 
   public CatDto color(String color) {
-    super.setColor(color);
+    super.color(color);
     return this;
   }
   @Override
