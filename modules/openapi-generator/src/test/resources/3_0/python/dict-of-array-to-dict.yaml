@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: Map of arrays in to_dict()
+  version: "1.0.0"
+paths: {}
+components:
+  schemas:
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+    UnnamedDictWithAdditionalStringListProperties:
+      type: object
+      properties:
+        dictProperty:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    UnnamedDictWithAdditionalModelListProperties:
+      type: object
+      properties:
+        dictProperty:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: "#/components/schemas/Tag"

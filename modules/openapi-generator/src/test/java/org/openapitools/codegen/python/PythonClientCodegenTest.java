@@ -412,6 +412,21 @@ public class PythonClientCodegenTest {
         assertFileContains(p, "openapi_client.ApiClient(configuration) as api_client");
     }
 
+    @Test(description = "to_dict() calls to_dict() on map-of-array values only when they are models")
+    public void dictOfArrayToDictTest() throws Exception {
+        final DefaultCodegen codegen = new PythonClientCodegen();
+        final String outputPath = generateFiles(codegen, "src/test/resources/3_0/python/dict-of-array-to-dict.yaml");
+        final String toDict = "_item.to_dict() for _item in self.dict_property[_key]";
+
+        final Path strings = Paths.get(outputPath + "openapi_client/models/unnamed_dict_with_additional_string_list_properties.py");
+        assertFileExists(strings);
+        TestUtils.assertFileNotContains(strings, toDict);
+
+        final Path models = Paths.get(outputPath + "openapi_client/models/unnamed_dict_with_additional_model_list_properties.py");
+        assertFileExists(models);
+        assertFileContains(models, "if self.dict_property[_key] is not None:", toDict);
+    }
+
     // Helper function, intended to reduce boilerplate
     static private String generateFiles(DefaultCodegen codegen, String filePath) throws IOException {
         final File output = Files.createTempDirectory("test").toFile().getCanonicalFile();
